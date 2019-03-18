@@ -10,8 +10,7 @@ Unfortunately, AMD's official repository for ROCm sometimes includes old or miss
 <br>
 <br>
 
-- How to setup Radeon GPU Driver (ROCm) on Ubuntu16.04/18.04
-- How to setup ROCm-Tensorflow on Ubuntu16.04/18.04
+- How to setup ROCm-PyTorch1.1.0a on Ubuntu16.04/18.04
   + ROCm(AMDGPU)-PyTorch1.1.0a Python2.7/Python3.5.2 + UbuntuOS
 <br>
 <br>
@@ -243,4 +242,12 @@ Vega56/Vega64/WX9100/MI25...
 #### gfx906(Vega20 Series)
 RadeonVII/MI50/MI60...
 
+
+### Also see, AMDGPU - ROCm Tensorflow 1.x installation, official, introduction on docker
+- GPUEater ROCM-Tensorflow installation https://www.gpueater.com/help
+- GPUEater github ROCm-Tensorflow information https://github.com/aieater/rocm_tensorflow_info
+- ROCm+DeepLearning libraries https://rocm-documentation.readthedocs.io/en/latest/Deep_learning/Deep-learning.html
+- ROCm github https://github.com/RadeonOpenCompute/ROCm
+- ROCm github https://github.com/RadeonOpenCompute/ROCm
+- ROCm-TensorFlow on Docker https://hub.docker.com/r/rocm/tensorflow/
 
