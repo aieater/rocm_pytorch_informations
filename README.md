@@ -227,11 +227,17 @@ else
 fi
 ```
 
+<br>
+<br>
+<br>
+<br>
 
 
 ### GFX806/GFX900/GFX906
 
 Latest ROCm-PyTorch needs to specify GPU architecture like gfx900.
+
+<br>
 
 #### gfx806(Polaris Series)
 RX550/RX560/RX570/RX580/RX590...
@@ -242,6 +248,11 @@ Vega56/Vega64/WX9100/MI25...
 #### gfx906(Vega20 Series)
 RadeonVII/MI50/MI60...
 
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ### Also see, AMDGPU - ROCm Tensorflow 1.x installation, official, introduction on docker
 - GPUEater ROCM-Tensorflow installation https://www.gpueater.com/help
