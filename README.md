@@ -254,11 +254,11 @@ RadeonVII/MI50/MI60...
 <br>
 <br>
 
-### Also see, AMDGPU - ROCm Tensorflow 1.x installation, official, introduction on docker
+### Also see, AMDGPU - ROCm Caffe/PyTorch/Tensorflow 1.x installation, official, introduction on docker
 - GPUEater ROCM-Tensorflow installation https://www.gpueater.com/help
 - GPUEater github ROCm-Tensorflow information https://github.com/aieater/rocm_tensorflow_info
+- GPUEater github ROCm-PyTorch information https://github.com/aieater/rocm_pytorch_informations
+- GPUEater github ROCm-Caffe information https://github.com/aieater/rocm_caffe_informations
 - ROCm+DeepLearning libraries https://rocm-documentation.readthedocs.io/en/latest/Deep_learning/Deep-learning.html
 - ROCm github https://github.com/RadeonOpenCompute/ROCm
-- ROCm github https://github.com/RadeonOpenCompute/ROCm
 - ROCm-TensorFlow on Docker https://hub.docker.com/r/rocm/tensorflow/
-
