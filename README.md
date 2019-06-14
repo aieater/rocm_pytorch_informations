@@ -26,13 +26,13 @@ Install AMDGPU driver(ROCm)
 curl -sL http://install.aieater.com/setup_rocm | bash -
 ```
 
-Install PyTorch1.0.1a from wheel.
+Install PyTorch1.1.0a from wheel.
 ```
 curl -sL http://install.aieater.com/setup_pytorch_prebuild_rocm | bash -
 ```
 
 
-### Python3.5.2 + ROCm Latest Driver(2.x) + ROCm-PyTorch1.1.0a easy installer without Docker 
+### Install ROCm-PyTorch1.1.0a from source without docker.
 ```
 curl -sL http://install.aieater.com/setup_pytorch_rocm | bash -
 ```
