@@ -17,10 +17,29 @@ Unfortunately, AMD's official repository for ROCm sometimes includes old or miss
 <br>
 <br>
 
-### Python3.5.2 + ROCm Latest Driver(2.x) + ROCm-PyTorch1.1.0a easy installer without Docker (Recommend)
+### Install from wheel (Recommend)
+
+This is only Python3.5+Ubuntu16.04.
+
+Install AMDGPU driver(ROCm)
+```
+curl -sL http://install.aieater.com/setup_rocm | bash -
+```
+
+Install PyTorch1.0.1a from wheel.
+```
+curl -sL http://install.aieater.com/setup_pytorch_prebuild_rocm | bash -
+```
+
+
+### Python3.5.2 + ROCm Latest Driver(2.x) + ROCm-PyTorch1.1.0a easy installer without Docker 
 ```
 curl -sL http://install.aieater.com/setup_pytorch_rocm | bash -
 ```
+
+#### Known issues
+ - ROCm 2.5 + latest MIOpen + ROCm-PyTorch compiling failed from source.
+   If you got a something error, 
 
 <br>
 <br>
