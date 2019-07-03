@@ -28,13 +28,13 @@ curl -sL http://install.aieater.com/setup_rocm | bash -
 
 Install PyTorch1.1.0a from wheel.
 ```
-curl -sL http://install.aieater.com/setup_pytorch_prebuild_rocm | bash -
+curl -sL http://install.aieater.com/setup_pytorch_rocm | bash -
 ```
 
 
 ### Install ROCm-PyTorch1.1.0a from source without docker.
 ```
-curl -sL http://install.aieater.com/setup_pytorch_rocm | bash -
+curl -sL http://install.aieater.com/setup_pytorch_build_rocm | bash -
 ```
 
 #### Known issues
