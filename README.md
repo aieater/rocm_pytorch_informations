@@ -1,4 +1,4 @@
-## PyTorch 1.6.0a + ROCm 3.3 for AMD RadeonGPU
+## PyTorch 1.6.0a + ROCm 3.3 for AMD RadeonGPU @ Apr 20th, 2020
 
 ### Update and upgrade to latest packages.
 ```
