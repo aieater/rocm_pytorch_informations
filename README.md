@@ -101,7 +101,7 @@ sudo usermod -a -G video $LOGNAME
 
 
 ### Preparing for installing pytorch
-### Install ROCm PyTorch dependencies (some might already be installed)
+### Install ROCm PyTorch/TensorFlow dependencies
 ```
 sudo apt install -y rocrand hiprand rocblas miopen miopengemm rocfft rocsparse rocm-cmake rocm-dev rocm-device-libs rocm-libs hcc hip_base hip_hcc hip-thrust
 ```
