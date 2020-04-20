@@ -169,9 +169,9 @@ python3 -c 'import torch;print("DeviceName:",str(torch.cuda.get_device_name(torc
 
 | AMDGPU | NVIDIA | Description |
 |:---|:---|:---|
-| export=HIP_VISIBLE_DEVICES= | export=HIP_VISIBLE_DEVICES= | CPU |
-| export=HIP_VISIBLE_DEVICES=0 | export=HIP_VISIBLE_DEVICES=0 | Single GPU |
-| export=HIP_VISIBLE_DEVICES=0,1 | export=HIP_VISIBLE_DEVICES=0,1 | Multiple GPUs |
+| export=HIP_VISIBLE_DEVICES= | export=CUDA_VISIBLE_DEVICES= | CPU |
+| export=HIP_VISIBLE_DEVICES=0 | export=CUDA_VISIBLE_DEVICES=0 | Single GPU |
+| export=HIP_VISIBLE_DEVICES=0,1 | export=CUDA_VISIBLE_DEVICES=0,1 | Multiple GPUs |
 
 <br>
 <br>
