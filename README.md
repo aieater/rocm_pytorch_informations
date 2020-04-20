@@ -201,6 +201,11 @@ cd pytorch
 python3 tools/amd_build/build_amd.py
 ```
 
+### Alternative to get a fixed version.
+```
+wget http://install.aieater.com/libs/pytorch/sources/pytorch1.6.0.tar.gz
+```
+This pytorch project has already hippified, and cloned sub modules.
 
 ### <font color="red">Required environment variables</font>
 
