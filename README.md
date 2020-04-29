@@ -84,7 +84,8 @@ ls /dev/dri/
 ### Add rocm binary paths
 ```
 echo 'export PATH=$PATH:/opt/rocm/bin:/opt/rocm/profiler/bin:/opt/rocm/opencl/bin/x86_64' |
-sudo tee -a /etc/profile.d/rocm.sh 
+sudo tee -a /etc/profile.d/rocm.sh
+sudo reboot
 ```
 
 
@@ -95,17 +96,30 @@ sudo tee -a /etc/profile.d/rocm.sh
 sudo usermod -a -G video $LOGNAME
 ```
 <br>
-<br>
-<br>
-<br>
-
 
 ### Preparing for installing pytorch
-### Install ROCm PyTorch/TensorFlow dependencies
+Install ROCm, mkl PyTorch/TensorFlow dependencies
 ```
-sudo apt install -y rocrand hiprand rocblas miopen miopengemm rocfft rocsparse rocm-cmake rocm-dev rocm-device-libs rocm-libs hcc hip_base hip_hcc hip-thrust
+sudo apt install -y gcc cmake clang ccache llvm ocl-icd-opencl-dev python3-pip
+
+cd /tmp
+wget https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS-2019.PUB
+sudo apt-key add GPG-PUB-KEY-INTEL-SW-PRODUCTS-2019.PUB
+
+sudo sh -c 'echo deb https://apt.repos.intel.com/mkl all main > /etc/apt/sources.list.d/intel-mkl.list'
+sudo apt-get update && sudo apt-get install intel-mkl-64bit-2018.2-046
+
+sudo apt install -y rocrand rocblas miopen-hip miopengemm rocfft rocprim rocsparse rocm-cmake rocm-dev rocm-device-libs rocm-libs rccl hipcub rocthrust
+
+export PATH=/opt/rocm/hcc/bin:/opt/rocm/hip/bin:/opt/rocm/opencl/bin:$PATH
+export USE_LLVM=/opt/llvm
+export LLVM_DIR=/opt/llvm/lib/cmake/llvm
+
 ```
 
+
+### Installing PyTorch
+You can choose either to install from [wheels](#Install-from-wheel) or build from [source](#Source-build-for-developers)
 
 ### Install from wheel
 
@@ -141,6 +155,73 @@ sudo pip3 install http://install.aieater.com/libs/pytorch/rocm3.3/gfx906/torch-1
 # Vega64(GFX900) ROCm3.3 PyTorch1.6.0a
 sudo pip3 install http://install.aieater.com/libs/pytorch/rocm3.3/gfx900/torch-1.6.0a0+d83509e-cp35-cp35m-linux_x86_64.whl torchvision
 ```
+continue to [test](#GPU-visibly-masking-and-multiple-GPUs) the installation. 
+
+<br>
+
+### Source build for developers
+
+#### Clone PyTorch repository
+```
+git clone https://github.com/pytorch/pytorch.git
+cd pytorch
+```
+
+#### <font color="red">'Hipify' PyTorch source by executing python tools/amd_build/build_amd.py</font>
+```
+python3 tools/amd_build/build_amd.py
+```
+
+#### Alternative to get a fixed version.
+```
+wget http://install.aieater.com/libs/pytorch/sources/pytorch1.6.0.tar.gz
+```
+This pytorch project has already hippified, and cloned sub modules.
+
+#### <font color="red">Required environment variables</font>
+
+| GFX Code | Architecture | Products |
+|:---:|:---:|:---|
+| GFX806 | Polaris Series | RX550/RX560/RX570/RX580/RX590 ... |
+| GFX900 | Vega10 Series | Vega64/Vega56/MI25/WX9100/FrontierEdition ... |
+| GFX906 | Vega20 Series | RadeonVII/MI50/MI60 ... |
+
+```
+#export HCC_AMDGPU_TARGET=gfx806 #(RX550/RX560/RX570/RX580/RX590 ...)
+export HCC_AMDGPU_TARGET=gfx900 #(Vega64/Vega56/MI25/WX9100/FrontierEdition ...)
+#export HCC_AMDGPU_TARGET=gfx906 #(RadeonVII/MI50/MI60 ...)
+
+export USE_NINJA=1
+export MAX_JOBS=8
+export HIP_PLATFORM=hcc
+
+echo $HCC_AMDGPU_TARGET
+```
+
+#### Install cmake and requirements to Build and install
+```
+pip3 install -r requirements.txt
+python3 setup.py install --user
+```
+
+#### Distribution build for wheel
+```
+python3 setup.py build
+```
+
+#### Cleanup
+```
+python3 setup.py clean
+```
+<br>
+
+### GPU visibly masking and multiple GPUs
+
+| AMDGPU | NVIDIA | Description |
+|:---|:---|:---|
+| export=HIP_VISIBLE_DEVICES= | export=CUDA_VISIBLE_DEVICES= | CPU |
+| export=HIP_VISIBLE_DEVICES=0 | export=CUDA_VISIBLE_DEVICES=0 | Single GPU |
+| export=HIP_VISIBLE_DEVICES=0,1 | export=CUDA_VISIBLE_DEVICES=0,1 | Multiple GPUs |
 
 ### Make sure to recognize GPU device via PyTorch.
 
@@ -164,87 +245,9 @@ python3 -c 'import torch;print("DeviceName:",str(torch.cuda.get_device_name(torc
 # DeviceName: Vega 20
 ```
 
-
-### GPU visibly masking and multiple GPUs
-
-| AMDGPU | NVIDIA | Description |
-|:---|:---|:---|
-| export=HIP_VISIBLE_DEVICES= | export=CUDA_VISIBLE_DEVICES= | CPU |
-| export=HIP_VISIBLE_DEVICES=0 | export=CUDA_VISIBLE_DEVICES=0 | Single GPU |
-| export=HIP_VISIBLE_DEVICES=0,1 | export=CUDA_VISIBLE_DEVICES=0,1 | Multiple GPUs |
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
------------------------------------
-
-<br>
-<br>
-<br>
-
-
-## Source build for developers
-
-
-### Clone PyTorch repository
-```
-git clone https://github.com/pytorch/pytorch.git
-cd pytorch
-```
-
-### <font color="red">'Hipify' PyTorch source by executing python tools/amd_build/build_amd.py</font>
-```
-python3 tools/amd_build/build_amd.py
-```
-
-### Alternative to get a fixed version.
-```
-wget http://install.aieater.com/libs/pytorch/sources/pytorch1.6.0.tar.gz
-```
-This pytorch project has already hippified, and cloned sub modules.
-
-### <font color="red">Required environment variables</font>
-
-| GFX Code | Architecture | Products |
-|:---:|:---:|:---|
-| GFX806 | Polaris Series | RX550/RX560/RX570/RX580/RX590 ... |
-| GFX900 | Vega10 Series | Vega64/Vega56/MI25/WX9100/FrontierEdition ... |
-| GFX906 | Vega20 Series | RadeonVII/MI50/MI60 ... |
-
-```
-#export HCC_AMDGPU_TARGET=gfx806 #(RX550/RX560/RX570/RX580/RX590 ...)
-export HCC_AMDGPU_TARGET=gfx900 #(Vega64/Vega56/MI25/WX9100/FrontierEdition ...)
-#export HCC_AMDGPU_TARGET=gfx906 #(RadeonVII/MI50/MI60 ...)
-
-export USE_NINJA=1
-export MAX_JOBS=8
-
-echo $HCC_AMDGPU_TARGET
-```
-
-### Build and install
-```
-python3 setup.py install
-```
-
-### Distribution build for wheel
-```
-python3 setup.py build
-```
-
-### Cleanup
-```
-python3 setup.py clean
-```
-
-
 ### Make sure everything is working
 ```
-PYTORCH_TEST_WITH_ROCM=1 python test/run_test.py --verbose
+PYTORCH_TEST_WITH_ROCM=1 python3 test/run_test.py --verbose
 ```
 
 
