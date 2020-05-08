@@ -141,7 +141,7 @@ You can choose either to install from [wheels](#Install-from-wheel) or build fro
 
 ```
 # ROCm3.3 PyTorch1.6.0a
-sudo pip3 install http://install.aieater.com/libs/pytorch/rocm3.3/gfx906/torch-1.6.0a0-cp37-cp37m-linux_x86_64.whl
+sudo pip3 install http://install.aieater.com/libs/pytorch/rocm3.3/gfx906/torch-1.6.0a0-cp37-cp37m-linux_x86_64.whl torchvision
 ```
 continue to [test](#GPU-visibly-masking-and-multiple-GPUs) the installation. 
 
