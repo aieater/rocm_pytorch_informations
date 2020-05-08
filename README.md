@@ -125,10 +125,8 @@ You can choose either to install from [wheels](#Install-from-wheel) or build fro
 
 | Python | ROCm | PyTorch | GPU | S |
 |:---:|:---:|:---:|:---:|:---:|
-| 3.5 | 3.3 | [1.6.0a](http://install.aieater.com/libs/pytorch/rocm3.3/gfx900/torch-1.6.0a0+d83509e-cp35-cp35m-linux_x86_64.whl) | GFX900 | ✓ | 
-| 3.5 | 3.3 | [1.6.0a](http://install.aieater.com/libs/pytorch/rocm3.3/gfx906/torch-1.6.0a0+d83509e-cp35-cp35m-linux_x86_64.whl) | GFX906 | ✓ | 
+| 3.7 | 3.3 | [1.6.0a](http://install.aieater.com/libs/pytorch/rocm3.3/gfx906/torch-1.6.0a0-cp37-cp37m-linux_x86_64.whl) | GFX906 | ✓ | 
 | 3.7 | 3.3 | 1.6.0a | GFX900 |  - |
-| 3.7 | 3.3 | 1.6.0a | GFX906 |  - |
 | 3.5 | 2.9 | [1.3.0a](http://install.aieater.com/libs/pytorch/rocm2.9/gfx900/torch-1.3.0a0+e5d82b5-cp35-cp35m-linux_x86_64.whl) | GFX900 |  ✓ | 
 | 3.5 | 2.9 | [1.3.0a](http://install.aieater.com/libs/pytorch/rocm2.9/gfx906/torch-1.3.0a0+e5d82b5-cp35-cp35m-linux_x86_64.whl) | GFX906 |  ✓ |
 | 3.7 | 2.9 | 1.3.0a | GFX900 |  - |
