@@ -22,7 +22,7 @@ echo 'deb [arch=amd64] http://repo.radeon.com/rocm/apt/debian/ xenial main' | su
 ### Install the ROCm driver.
 ```
 sudo apt update
-sudo apt install -y rocm-dkms rocm-libs hipcub miopen-hip librccl
+sudo apt install -y rocm-dkms rocm-libs hipcub miopen-hip rccl
 sudo reboot
 ```
 
@@ -98,22 +98,14 @@ sudo usermod -a -G video $LOGNAME
 <br>
 
 ### Preparing for installing pytorch
-Install ROCm, mkl PyTorch/TensorFlow dependencies
+Install mkl
 ```
-sudo apt install -y gcc cmake clang ccache llvm ocl-icd-opencl-dev python3-pip
-
 cd /tmp
 wget https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS-2019.PUB
 sudo apt-key add GPG-PUB-KEY-INTEL-SW-PRODUCTS-2019.PUB
 
 sudo sh -c 'echo deb https://apt.repos.intel.com/mkl all main > /etc/apt/sources.list.d/intel-mkl.list'
 sudo apt-get update && sudo apt-get install intel-mkl-64bit-2018.2-046
-
-sudo apt install -y rocrand rocblas miopen-hip miopengemm rocfft rocprim rocsparse rocm-cmake rocm-dev rocm-device-libs rocm-libs rccl hipcub rocthrust
-
-export PATH=/opt/rocm/hcc/bin:/opt/rocm/hip/bin:/opt/rocm/opencl/bin:$PATH
-export USE_LLVM=/opt/llvm
-export LLVM_DIR=/opt/llvm/lib/cmake/llvm
 
 ```
 
@@ -145,19 +137,29 @@ You can choose either to install from [wheels](#Install-from-wheel) or build fro
 <br>
 
 
+
+
 ```
-# RadeonVII(GFX906) ROCm3.3 PyTorch1.6.0a
-sudo pip3 install http://install.aieater.com/libs/pytorch/rocm3.3/gfx906/torch-1.6.0a0+d83509e-cp35-cp35m-linux_x86_64.whl torchvision
-```
-```
-# Vega64(GFX900) ROCm3.3 PyTorch1.6.0a
-sudo pip3 install http://install.aieater.com/libs/pytorch/rocm3.3/gfx900/torch-1.6.0a0+d83509e-cp35-cp35m-linux_x86_64.whl torchvision
+# ROCm3.3 PyTorch1.6.0a
+sudo pip3 install http://install.aieater.com/libs/pytorch/rocm3.3/gfx906/torch-1.6.0a0-cp37-cp37m-linux_x86_64.whl
 ```
 continue to [test](#GPU-visibly-masking-and-multiple-GPUs) the installation. 
 
 <br>
 
 ### Source build for developers
+
+
+#### Install dependencies
+```
+sudo apt install -y gcc cmake clang ccache llvm ocl-icd-opencl-dev python3-pip
+sudo apt install -y rocrand rocblas miopen-hip miopengemm rocfft rocprim rocsparse rocm-cmake rocm-dev rocm-device-libs rocm-libs rccl hipcub rocthrust
+
+export PATH=/opt/rocm/hcc/bin:/opt/rocm/hip/bin:/opt/rocm/opencl/bin:$PATH
+export USE_LLVM=/opt/llvm
+export LLVM_DIR=/opt/llvm/lib/cmake/llvm
+```
+
 
 #### Clone PyTorch repository
 ```
