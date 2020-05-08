@@ -22,7 +22,7 @@ echo 'deb [arch=amd64] http://repo.radeon.com/rocm/apt/debian/ xenial main' | su
 ### Install the ROCm driver.
 ```
 sudo apt update
-sudo apt install rocm-dkms
+sudo apt install -y rocm-dkms rocm-libs hipcub miopen-hip librccl
 sudo reboot
 ```
 
