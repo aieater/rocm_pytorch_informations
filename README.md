@@ -165,6 +165,7 @@ export LLVM_DIR=/opt/llvm/lib/cmake/llvm
 ```
 git clone https://github.com/pytorch/pytorch.git
 cd pytorch
+git submodule update --init --recursive
 ```
 
 #### <font color="red">'Hipify' PyTorch source by executing python tools/amd_build/build_amd.py</font>
