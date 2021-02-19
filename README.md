@@ -167,6 +167,11 @@ git clone https://github.com/pytorch/pytorch.git
 cd pytorch
 ```
 
+#### Download the submodules for pytorch repository
+```
+git submodule update --recursive
+```
+
 #### <font color="red">'Hipify' PyTorch source by executing python tools/amd_build/build_amd.py</font>
 ```
 python3 tools/amd_build/build_amd.py
